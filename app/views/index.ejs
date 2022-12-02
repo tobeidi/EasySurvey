@@ -95,7 +95,7 @@
                         return false;
 
                     addItemToList(txtChoice.value, lstChoices);
-                    addItemToTextArray (txtChoicesArray, '"choice" : "' + txtChoice.value +'"');
+                    addItemToTextArray (txtChoicesArray, '{"choice" : "' + txtChoice.value +'"}');
                     txtChoice.value = "";
                 }
 
@@ -183,10 +183,13 @@
                 }
 
                 function validateQuestion(form){
-                    if (! validateInputField(form.qText, "Please Enter a question First"))
+                    if (! validateInputField(form.qText, "Please Enter a question First")) 
                         return false;
                     if (! validateInputField(form.qType, "Please Select a Question Type First"))
-                        return false;                    
+                        return false;     
+                    if ((form.qType.value === "mco" || form.qType.value === "mca"))
+                        if(! validateInputField(form.cTextArray, "Please Add choices to MCQ Type First"))
+                            return false;                   
                     return true;
                 }
 
@@ -233,7 +236,7 @@
                     form.addButton.disabled = "disabled";
                     form.deleteButton.disabled = "disabled";
                     form.qList.disabled = "disabled";
-                    form.cancelEditButton.style.visibility = "";
+                    form.cancelEditButton.style.display = "inline";
                 }
 
                 function displayEditMode (form){
@@ -241,7 +244,7 @@
                     form.addButton.disabled = "";
                     form.deleteButton.disabled = "";
                     form.qList.disabled = "";
-                    form.cancelEditButton.style.visibility = "hidden";
+                    form.cancelEditButton.style.display = "none";
                 }
 
                 function loadQuestion(frm){
