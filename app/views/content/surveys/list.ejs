@@ -17,11 +17,11 @@
                         <% if(displayName) { %>
                         <th scope="col">Visibility</th>
                         <th>Report</th>
-                        <th>Edit</th>
+                        <!-- <th>Edit</th> -->
                         <th>Customize</th>
                         <th>Delete</th>
                         <% } else { %>
-                        <th>Action</th>
+                        <th>Join</th>
                         <% } %> 
                     </tr>
                 </thead>
@@ -30,7 +30,9 @@
                     <% for(let count = 0; count < surveys.length; count++) { %>
                         <tr>
                             <th scope="row" class="text-center"><%= count + 1 %></th>
-                            <td><%= surveys[count].title %> </td>
+                            <td><a href = '<%= (displayName) ? "/survey-edit/" + surveys[count]._id : "/survey-join/" + surveys[count]._id %>'>
+                                 <!-- "/survey-edit/<%= surveys[count]._id %>"> -->
+                                <%= surveys[count].title %> </a></td>
                             <td><%= surveys[count].startdate.toLocaleString() %></td>
                             <td><%= surveys[count].enddate.toLocaleString() %></td>
                             <% if(displayName) { %>
@@ -38,32 +40,32 @@
                             <td class="text-center col-1">
                                 <a href="/survey-edit/<%= surveys[count]._id %>"
                                     class="btn btn-primary btn-sm">
-                                    <i class="fas fa-pencil-alt"></i> Report</a>
+                                    <i class="fa fa-bar-chart"></i> </a>
                             </td>
 
-                            <td class="text-center col-1">
+                            <!-- <td class="text-center col-1">
                                 <a href="/survey-edit/<%= surveys[count]._id %>"
                                     class="btn btn-primary btn-sm">
                                     <i class="fas fa-pencil-alt"></i> Edit</a>
-                            </td>
+                            </td> -->
 
                             <td class="text-center col-1">
                                 <a href="/survey-customize/<%= surveys[count]._id %>"
                                     class="btn btn-primary btn-sm">
-                                    <i class="fas fa-pencil-alt"></i>Customize Questions</a>
+                                    <i class="fas fa-pencil-alt"></i></a>
                             </td>
 
                             <td class="text-center col-1">
                                 <a href="/survey-delete/<%= surveys[count]._id %>"
                                     class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash-alt"></i> Delete</a>
+                                    <i class="fas fa-trash-alt"></i> </a>
                             </td>
                             <% } else { %>
 
                                 <td class="text-center col-1">
                                     <a href="/survey-join/<%= surveys[count]._id %>"
                                         class="btn btn-primary btn-sm">
-                                        <i class="fas fa-pencil-alt"></i> Join</a>
+                                        <i class="fas fa-pencil-alt"></i> </a>
                                 </td>
 
                             <% } %> 
