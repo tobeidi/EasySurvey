@@ -3,9 +3,9 @@
         <div class="offset-md-1 col-md-8">
             <h1><%= title %>:  <%= survey.title%> </h1><br>
 
-            <input type="button" class="btn btn-primary" onclick="loadSample(frmCustomizeSurvey)" id="btnSample" value="Sample">
+            <input type="button" class="btn btn-primary" onclick="loadSample(frmSurvey)" id="btnSample" value="Sample">
 
-            <form class="form" id= "frmCustomizeSurvey" method="POST">
+            <form class="form" id= "frmSurvey" method="POST" name = "questionsCustomization">
                 <input type="hidden" name="id" value="<%= survey._id %>" >
                 
 
@@ -29,7 +29,7 @@
                             <input type="text" value="" id="txtChoiceText"><br><br>
                             <select id="lstChoices" multiple class="form-control input-sm"></select><br>
                             <div align="center">
-                                <input type="button" class="btn btn-primary" onclick="addChoice(txtChoiceText, lstChoices, txtChoicesArray) , clearChoice(frmCustomizeSurvey)" id="btnAddChoice" value="Add choice">
+                                <input type="button" class="btn btn-primary" onclick="addChoice(txtChoiceText, lstChoices, txtChoicesArray) , clearChoice(frmSurvey)" id="btnAddChoice" value="Add choice">
                                 <input type="button" class="btn btn-danger" onclick="deleteChoice(lstChoices)" id="btnDeleteChoice" value="Delete choice">                    
                                 <input type = "hidden" name = "txtChoicesArray" id ="txtChoicesArray" >                  
 
@@ -37,15 +37,15 @@
                         </div>
 
                         <label for="lstQuestions" id="lblQuestionList">List of Questions in the Survey:</label>
-                        <select id="lstQuestions" multiple class="form-control input-sm" ondblclick="loadQuestion(frmCustomizeSurvey), choicesShowHide(DivChoices,lstQuestionType)"></select><br>
+                        <select id="lstQuestions" multiple class="form-control input-sm" ondblclick="loadQuestion(frmSurvey), choicesShowHide(DivChoices,lstQuestionType)"></select><br>
                         <div align="center">
                             <!-- <%= JSON.stringify(survey) %> -->
                             <input type ="hidden" name = "txtQuestionsArray" id ="txtQuestionsArray" 
                                 value="<%= (survey.questions[0] == null) ? '' : JSON.stringify(survey.questions)%>" >                 
-                            <input type="button" class="btn btn-primary" onclick="addQuestion(frmCustomizeSurvey)" id="btnAddQuestion" value ="Add Question" >
-                            <input type="button" class="btn btn-danger" onclick="deleteQuestion(frmCustomizeSurvey) , clearQuestion(frmCustomizeSurvey)" id="btnDeleteQuestion" value="Delete Question">
-                            <input type="button" class="btn btn-primary" onclick="loadQuestion(frmCustomizeSurvey), choicesShowHide(DivChoices,lstQuestionType)" id="btnEditQuestion" value ="Edit Question" >
-                            <input type="button" class="btn btn-warning" onclick="cancelEditQuestion(frmCustomizeSurvey) , choicesShowHide(DivChoices,lstQuestionType)" id="btnCancelEditQuestion" value ="Cancel"  style = "display:none"><br><br>
+                            <input type="button" class="btn btn-primary" onclick="addQuestion(frmSurvey)" id="btnAddQuestion" value ="Add Question" >
+                            <input type="button" class="btn btn-danger" onclick="deleteQuestion(frmSurvey) , clearQuestion(frmSurvey)" id="btnDeleteQuestion" value="Delete Question">
+                            <input type="button" class="btn btn-primary" onclick="loadQuestion(frmSurvey), choicesShowHide(DivChoices,lstQuestionType)" id="btnEditQuestion" value ="Edit Question" >
+                            <input type="button" class="btn btn-warning" onclick="cancelEditQuestion(frmSurvey) , choicesShowHide(DivChoices,lstQuestionType)" id="btnCancelEditQuestion" value ="Cancel"  style = "display:none"><br><br>
                         </div> 
 
                     </div>
@@ -55,7 +55,7 @@
 
                 </fieldset><br>
 
-                <button class="btn btn-primary" type="submit" onclick="composeQuestionc(frmCustomizeSurvey)">
+                <button class="btn btn-primary" type="submit" onclick="composeQuestion(frmSurvey)">
                     <i class="fas fa-edit"></i> Submit</button>
                 
                 <a href="/survey-list" class="btn btn-warning">
